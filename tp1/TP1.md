@@ -165,7 +165,11 @@ Que fait exactement l'instruction préprocesseur `#include` et pourquoi permet-e
 4. Compilez le programme de l'exercice en ne linkant que le fichier-objet associé à `main.cpp` (c'est-à-dire en oubliant `utils.cpp`).  
 Quelle est l'erreur qui s'affiche ?    
 En quoi est-elle différente des erreurs de la question précédente ?  
+```
+reference undefined : pendant l'édition de lien, on a oublié de définir une fonction ou on a fait une erreur dans le nom.
+```
 Expliquez ce qu'elle signifie exactement.
+
 
 5. Décommentez maintentant les instructions commentée des fichiers [main.cpp](ex3/main.cpp) et [utils.hpp](ex3/utils.hpp).  
 Compilez maintenant le programme complet (avec les modules main et utils).  
@@ -175,6 +179,10 @@ Que faudrait-il faire pour la résoudre ?
 
 6. Ajoutez le mot-clef `inline` devant la définition de la fonction `print_bye` dans [utils.hpp](ex3/utils.hpp). Que constatez-vous quand vous réessayez de compiler le programme ?  
 Selon-vous, quel est l'effet du mot-clef `inline` sur le linker ?
+
+```
+on force le linker à ne prendre qu'une seul des définitions
+```
 
 ## Pour terminer
 
