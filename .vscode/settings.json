@@ -66,5 +66,9 @@
         "numbers": "cpp",
         "sstream": "cpp",
         "cinttypes": "cpp"
-    }
+    },
+    "markdown.styles": [
+        "https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+    ]
+
 }

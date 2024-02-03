@@ -4,6 +4,7 @@
 
 #include <list>
 #include <string>
+#include <iostream>
 
 class Department
 {
@@ -24,7 +25,22 @@ public:
         return employee;
     }
 
+    void print_employees() const
+    {
+        for(auto& employee: _employees)
+        {
+            std::cout << employee << std::endl; 
+        }
+    }
+
+    friend std::ostream& operator<<(std::ostream& stream, const Department& department);
+
 private:
     std::string _name;
     std::list<Employee> _employees;
 };
+
+inline std::ostream& operator<<(std::ostream& stream, const Department& department)
+{
+    return stream << department._name;
+}

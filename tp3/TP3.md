@@ -47,6 +47,8 @@ int main()
 
 1. Pourquoi n'y a-t-il pas de relation entre `last_wheel` et `wheels[3]` contrairement à `first_wheel` et `wheels[0]` ?
 
+
+
 ### Cas B - Pointeurs-observants
 
 ```cpp
@@ -73,8 +75,16 @@ int main()
 ![](images/ex1-b.svg)
 
 1. Dans le graphe d'ownership, comment distingue-t-on un pointeur d'une référence ?
+Un réference est un rectangle ayant un bord en pointillé et un flèche pointillé vers la donnée
+
+Et un pointeur a une flèche pleine
+
 2. Comment est représenté un pointeur nul ?
+<br>le cercle avec un croix
 3. En termes de code, quelles sont les deux différences principales entre un pointeur-observant et une référence ?
+<br>& vs *
+<br>Un pointeur peut être nul et être réassignable;
+
 
 ### Cas C - Insertions dans un `std::vector`
 
@@ -110,9 +120,74 @@ Lors d'une insertion, si le buffer mémoire réservé par `std::vector` n'a pas 
 Chaque élément est déplacé de son ancienne adresse mémoire vers la nouvelle.
 
 1. Essayez de représenter les transitions dans le graphe d'ownership après le dernier `push_back` si celui-ci déclenchait une réallocation mémoire.
+
+```mermaid
+    flowchart TD;
+        main([main]);
+        main --> client;
+        main --> first_product 
+        style first_product stroke:#f66 stroke-width:2px,stroke-dasharray: 5 5
+        client --> products;
+        first_product .-> p["products[0]"];
+        style p fill:red, stroke:#f66 stroke-width:2px,stroke-dasharray: 5 5
+        products --> p0["products[0]"];
+        products --> p1["products[1]"];
+        products --> p2["products[2]"];
+
+```
+
+
 2. Quel problème relève-t-on dans le graphe ?
 3. Modifiez le code ci-dessus afin que `products` contienne des pointeurs ownants. Pensez à ajouter un destructeur à `Client` pour libérer la mémoire allouée dynamiquement.
+
+```cpp
+#include <memory>
+#include <vector>
+
+struct Product
+{};
+
+struct Client
+{
+    std::vector<Product*> products;
+
+    ~Client()
+    {
+        for(auto* p: products)
+        {
+            delete p;
+        }
+    }
+};
+
+int main()
+{
+    auto client = Client {};
+
+    client.products.push_back(Product{});
+    client.products.push_back(Product{});
+
+    auto& first_product = client.products.front();
+                                                    // <-- on est ici
+    client.products.push_back(Product{});
+    return 0;
+}
+```
 4. Redessinez le graphe d'ownership de la question 1, mais en prenant en compte vos changements dans le code.
+
+```mermaid
+    flowchart TD;
+        main([main]);
+        main --> client;
+        main --> first_product 
+        client --> products;
+        products --> p0["products[0]"];
+        p0 .-> p00["Product{}"];
+        p1 .-> p01["Product{}"];
+        products --> p1["products[1]"];
+        first_product .-> p00;
+        style first_product stroke:#f66 stroke-width:2px,stroke-dasharray: 5 5
+```
 5. Avez-vous toujours le problème relevé à la question 2 ?
 
 ## Exercice 2 - La meilleure signature (15min)
@@ -128,6 +203,30 @@ XX add(XX a, XX b)
 }
 
 XX add_to(XX a, XX b)
+{
+    a += b;
+}
+
+int main()
+{
+    int x = 10;
+    int y = add(x, x);
+    add_to(y, 22);
+    std::cout << x << " " << y << std::endl;
+    return 0;
+}
+```
+=>
+
+```cpp
+#include <iostream>
+
+int add(int a, int b)
+{
+    return a + b;
+}
+
+int& add_to(int& a, int b)
 {
     a += b;
 }
@@ -165,6 +264,29 @@ bool are_all_positives(std::vector<int> values, int negative_indices_out[], size
 // Concatenate 'str1' and 'str2' and return the result.
 // The input parameters are not modified by the function.
 std::string concatenate(char* str1, char* str2);
+```
+
+```cpp
+// Return the number of occurrences of 'a' found in string 's'.
+int count_a_occurrences(const std::string& s);
+
+// Update function of a rendering program.
+// - dt (delta time) is read by the function to know the time elapsed since the last frame.
+// - errors is a string filled by the function to indicate what errors have occured.
+void update_loop(float dt, std::string& errors_out);
+
+// Return whether all numbers in 'values' are positive.
+// If there are negative values in it, fill the array 'negative_indices_out' with the indices
+// of these values and set its size in 'negative_count_out'.
+// ex: auto res = are_all_positive({ 1, -2, 3, -4 }, negative_indices, negative_count);
+//    -> res is false, since not all values are positive
+//    -> negative_indices contains { 1, 3 } because values[1] = -2 and values[3] = -4
+//    -> negative_count is 2
+bool are_all_positives(const std::vector<int>& values, std::vector<int>& negative_indices_out);
+
+// Concatenate 'str1' and 'str2' and return the result.
+// The input parameters are not modified by the function.
+std::string concatenate(const std::string& str1, const std::string& str2);
 ```
 
 ## Exercice 3 - Gestion des resources (55min)

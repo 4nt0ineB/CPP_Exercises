@@ -3,6 +3,7 @@
 #include <list>
 #include <ostream>
 #include <string>
+#include <iostream>
 
 class Employee
 {
@@ -14,7 +15,15 @@ public:
     void add_subordinate(Employee& subordinate)
     {
         // TODO - Q3
-        // ...
+        _subordinates.push_back(&subordinate);
+    }
+
+    void print_subordinates() const
+    {
+        for(auto subordinate: _subordinates)
+        {
+            std::cout << subordinate << std::endl; 
+        }
     }
 
     friend std::ostream& operator<<(std::ostream&, const Employee&);
