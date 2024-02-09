@@ -26,7 +26,7 @@
 // Question 2
 // count_nb_elements permet de retourner le nombre d'éléments présents dans un tableau dynamique
 //  ANSWER_2A count_nb_elements(ANSWER_2B elements);
-#define ANSWER_2A int
+#define ANSWER_2A unsigned int
 #define ANSWER_2B const std::vector<int>&
 
 // Question 3
