@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/tp5-ex2.dir/2-ptr/main.cpp.o" -o tp5-ex2 
