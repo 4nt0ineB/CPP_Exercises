@@ -8,7 +8,7 @@
 
 ## Exercice 1 - Appels polymorphes (20min)
 
-Pour chacun des appels ci-dessous, déterminez le type dynamique et le type statique des instances sur lesquels l'appel est réalisé.  
+Pour chacun des appels ci-dessous, déterminez le type dynamique et le type statique des instances sur lesquels l'appel est réalisé. 
 Déduisez-en la fonction qui sera appelée au moment de l'exécution du programme.
 
 ```cpp
@@ -125,7 +125,7 @@ Décommentez l'instruction ci-dessous dans le `main` et vérifiez qu'un troisiè
 all_entities.push_back(std::make_unique<Character>());
 ```
 
-2. Définissez maintenant un constructeur prenant en paramètre deux entiers `x` et `y`. Vous passerez ces paramètres **au constructeur de la classe de base** afin d'initialiser la position du personnage.  
+2. Définissez maintenant un constructeur prenant en paramètre deux entiers `x` et `y`. Vous passerez ces paramètres **au constructeur de la classe de base** afin d'initialiser la position du personnage. 
 Adaptez l'instruction du `main` de manière à ce que le personnage apparaisse en `(40, 5)` et testez votre programme.
 
 3. Modifiez la fonction `Entity::get_representation() const` afin que celle-ci puisse être redéfinie dans les classes-filles.
