@@ -8,7 +8,11 @@
 
 ## Exercice 1 - Appels polymorphes (20min)
 
+<<<<<<< HEAD
 Pour chacun des appels ci-dessous, déterminez le type dynamique et le type statique des instances sur lesquels l'appel est réalisé. 
+=======
+Pour chacun des appels ci-dessous, déterminez le type dynamique et le type statique des instances sur lesquels l'appel est réalisé.  
+>>>>>>> upstream/2024/tp8
 Déduisez-en la fonction qui sera appelée au moment de l'exécution du programme.
 
 ```cpp
@@ -125,7 +129,11 @@ Décommentez l'instruction ci-dessous dans le `main` et vérifiez qu'un troisiè
 all_entities.push_back(std::make_unique<Character>());
 ```
 
+<<<<<<< HEAD
 2. Définissez maintenant un constructeur prenant en paramètre deux entiers `x` et `y`. Vous passerez ces paramètres **au constructeur de la classe de base** afin d'initialiser la position du personnage. 
+=======
+2. Définissez maintenant un constructeur prenant en paramètre deux entiers `x` et `y`. Vous passerez ces paramètres **au constructeur de la classe de base** afin d'initialiser la position du personnage.  
+>>>>>>> upstream/2024/tp8
 Adaptez l'instruction du `main` de manière à ce que le personnage apparaisse en `(40, 5)` et testez votre programme.
 
 3. Modifiez la fonction `Entity::get_representation() const` afin que celle-ci puisse être redéfinie dans les classes-filles.
@@ -198,4 +206,8 @@ Appelez cette fonction à l'endroit approprié, et utilisez la valeur de `is_con
 On attendra quelque chose comme : `"A character died at position (5, 7)"`.
 Si votre destructeur n'est pas appelé, demandez-vous sur quel est le type statique de l'objet détruit et ce qu'il se passe au cours de la résolution de l'appel.
 
+<<<<<<< HEAD
 5. **(Bonus)** Faites en sorte que les entités qui sortent de la grille soient aussi supprimées.
+=======
+5. **(Bonus)** Faites en sorte que les entités qui sortent de la grille soient aussi supprimées.
+>>>>>>> upstream/2024/tp8

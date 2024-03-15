@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Random.hpp"
+<<<<<<< HEAD
 #include "Logger.hpp"
+=======
+>>>>>>> upstream/2024/tp8
 
 class Entity
 {
@@ -13,6 +16,7 @@ public:
         , _y { y }
     {}
 
+<<<<<<< HEAD
     virtual ~Entity() = default;
 
     int get_x() const { return _x; }
@@ -28,6 +32,14 @@ public:
     }
 
     virtual bool should_destroy() const { return false; }
+=======
+    int get_x() const { return _x; }
+    int get_y() const { return _y; }
+
+    char get_representation() const { return '?'; }
+
+    void update() { random_move(_x, _y); }
+>>>>>>> upstream/2024/tp8
 
 private:
     int _x = 0;
