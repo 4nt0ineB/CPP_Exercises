@@ -24,12 +24,21 @@ i == 4 // right
 
 b. `vec` est un `std::vector<char>`
 ```cpp
+<<<<<<< HEAD
 vec[5] // left
 vec // left
 vec.pop_back() // right
 std::vector { 'a', 'b', 'c' } // right
 vec.push_back('d') // right
 std::move(vec) // right
+=======
+vec[5]
+vec
+vec.pop_back()
+std::vector { 'a', 'b', 'c' }
+vec.emplace_back('d')
+std::move(vec)
+>>>>>>> upstream/2024/tp9
 ```
 
 c. `ptr` est un pointeur de `int`

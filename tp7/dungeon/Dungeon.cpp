@@ -1,11 +1,8 @@
 #include "Entity.hpp"
 #include "Logger.hpp"
-<<<<<<< HEAD
 #include "Character.hpp"
 #include "Trap.hpp"
 #include "Potion.hpp"
-=======
->>>>>>> upstream/2024/tp8
 
 #include <array>
 #include <chrono>
@@ -102,13 +99,8 @@ void trigger_interactions(const std::vector<Entity*>& entities)
 {
     if (entities.size() > 1)
     {
-<<<<<<< HEAD
         entities[0]->interact_with(*entities[1]);
         entities[1]->interact_with(*entities[0]);
-=======
-        // entities[0]->interact_with(*entities[1]);
-        // entities[1]->interact_with(*entities[0]);
->>>>>>> upstream/2024/tp8
     }
 }
 
@@ -116,11 +108,7 @@ void remove_dead_entities(std::vector<std::unique_ptr<Entity>>& entities)
 {
     for (auto it = entities.begin(); it != entities.end();)
     {
-<<<<<<< HEAD
         const auto should_remove = (*it)->should_destroy(); // <- modifiez cette condition
-=======
-        const auto should_remove = false; // <- modifiez cette condition
->>>>>>> upstream/2024/tp8
         if (should_remove)
         {
             it = entities.erase(it);
@@ -179,7 +167,6 @@ int main()
     auto logs = std::deque<std::string> {};
 
     auto       grid   = Grid {};
-<<<<<<< HEAD
     const auto width  = grid.front().size() / 3;
     const auto height = grid.size() - 4;
 
@@ -195,17 +182,6 @@ int main()
     all_entities.push_back(std::make_unique<Trap>(width, height));
     all_entities.push_back(std::make_unique<Potion>(width, height));
     all_entities.push_back(std::make_unique<Potion>(width, height));
-=======
-    const auto width  = grid.front().size();
-    const auto height = grid.size();
-
-    auto all_entities = std::vector<std::unique_ptr<Entity>> {};
-    all_entities.push_back(std::make_unique<Entity>(3, 2));
-    all_entities.push_back(std::make_unique<Entity>(7, 6));
-    // all_entities.push_back(std::make_unique<Character>());
-    // all_entities.push_back(std::make_unique<Trap>(width, height));
-    // all_entities.push_back(std::make_unique<Trap>(width, height));
->>>>>>> upstream/2024/tp8
 
     fill_grid(grid, all_entities);
 
