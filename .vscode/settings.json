@@ -95,7 +95,8 @@
         "locale": "cpp",
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "codecvt": "cpp"
     }
 >>>>>>> upstream/2024/tp8
 }
